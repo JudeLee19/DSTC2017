@@ -81,7 +81,7 @@ class Dnn():
                 input_features.append(input_feature)
 
             input_features = np.array([input_features])
-
+            
             ground_label_list = []
             for label in ground_label:
                 # label.strip().encode('utf-8')
@@ -93,7 +93,7 @@ class Dnn():
                 self.input_features: input_features,
                 self.ground_label: ground_label_list
             }
-
+            
             # self.merged = tf.summary.merge_all()
             self.file_writer = tf.summary.FileWriter(self.config.output_path, sess.graph)
 

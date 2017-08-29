@@ -17,6 +17,9 @@ class Config():
     model_output = output_path + 'model.weights/'
     log_path = output_path + "log.txt"
 
+    lr = 0.01
+    lr_decay = 0.9
+
     reload = False
 
     num_epochs = 20
@@ -24,8 +27,8 @@ class Config():
     embed_method = 'word2vec'
 
     # file name lists for training
-    word2vec_filename = '../bilingual/wiki/wiki_en_model'
+    word2vec_filename = '../dstc6/dbdc3/data/word2vec/wiki_en_model'
 
-    train_filename = './data/train_dataset'
-    dev_filename = './data/dev_dataset'
-    test_filename = './data/test_dataset'
+    train_filename = '../dstc6/dbdc3/data/train_test_dir/train_dataset'
+    dev_filename = '../dstc6/dbdc3/data/train_test_dir/dev_dataset'
+    test_filename = '../dstc6/dbdc3/data/train_test_dir/test_dataset'

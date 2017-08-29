@@ -85,7 +85,7 @@ class Dnn():
             ground_label_list = []
             for label in ground_label:
                 # label.strip().encode('utf-8')
-                ground_label_list.append(self.cate_mapping_dict[label.strip().encode('utf-8')])
+                ground_label_list.append(self.cate_mapping_dict[label.strip()])
 
             ground_label_list = np.array([ground_label_list])
 
@@ -111,14 +111,12 @@ class Dnn():
             for each_utter_list in concat_utter_list:
                 user_sentence = each_utter_list[0]
                 system_sentence = each_utter_list[1]
-                if self.config.embed_method == 'word2vec':
-                    user_embedding = self.utter_embed.embed_utterance(user_sentence)
-                    system_embedding = self.utter_embed.embed_utterance(system_sentence)
-                    input_feature = np.concatenate((user_embedding, system_embedding))
-                    input_features.append(input_feature)
+                user_embedding = self.utter_embed.embed_utterance(user_sentence)
+                system_embedding = self.utter_embed.embed_utterance(system_sentence)
+                input_feature = np.concatenate((user_embedding, system_embedding))
+                input_features.append(input_feature)
 
-            if self.config.embed_method == 'word2vec':
-                input_features = np.array([input_features])
+            input_features = np.array([input_features])
 
             ground_label_list = []
             for label in ground_label:
@@ -168,6 +166,5 @@ class Dnn():
             sess.run(tf.global_variables_initializer())
 
             for epoch in range(self.config.num_epochs):
-                # accuracy, f1_score = self.run_epoch(sess, train_data, dev_data, test_data, step)
                 print('Step : ', epoch)
-                (self.run_epoch(sess, train_data, dev_data, test_data, epoch))
+                self.run_epoch(sess, train_data, dev_data, test_data, epoch)
